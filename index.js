@@ -1,7 +1,8 @@
 const form = document.querySelector('form');
 
 form.addEventListener('submit', (e) => {
-  e.preventDefault()
+  // Prevents the page from reloading
+  e.preventDefault();
 
   // Get the answers from the form
   const rawData = new FormData(form);
@@ -65,11 +66,8 @@ form.addEventListener('submit', (e) => {
 
 const computeScore = (formData) => {
     const scores = Object.values(formData).map(score => parseInt(score));
-    console.log({scores});
     const total = scores.reduce((accumulator, value) => { return accumulator + value; }, 0);
-    console.log({total});
     const average = total/scores.length;
-    console.log({average});
     return Math.ceil(average);
 }
 
@@ -83,12 +81,6 @@ const retrieveFeedback = (formData) => {
     });
     return feedbackToDisplay;
 }
-
-
-
-
-
-
 
 const feedbackData = {
     genderDisaggregatedData: `Having your training data set broken down by gender is important for several reasons:\n
