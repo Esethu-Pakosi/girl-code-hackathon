@@ -11,6 +11,13 @@
 <body>
   <div class="container" id="form-container">
     <h1>Gender Bias Assessment</h1>
+    <p>Are you about to build an AI model? This will no doubt revolutionise your solution!</p>
+    <p>However, AI models can perpetuate gender biases by learning from biased training data, 
+      replicating and reinforcing societal prejudices in their decision-making. So how do you avoid that?</p>
+    <p>With this Gender Bias Assessment, you can measure whether your AI model is likely to 
+      contain gender bias. Simply fill out the form to see your score (out of 3), and receive 
+      concrete recommendations for how to improve it.
+    </p>
     <form>
       <div class="question">
         <label>1. Is your training data set broken down by gender (i.e do you have data on both men and women)?
@@ -20,14 +27,16 @@
         <input type="radio" name="genderDisaggregatedData" value=2> I don't know
       </div>
       <div class="question">
-        <label>2. Does your training data set have equal representation of genders (i.e. roughly 50% of data on men and women)?
+        <label>2. Does your training data set have equal representation of genders (i.e. roughly 50% of data on men and
+          women)?
         </label>
         <input type="radio" name="genderEqualData" value=3 required> Yes<br>
         <input type="radio" name="genderEqualData" value=1> No<br>
         <input type="radio" name="genderEqualData" value=2> I don't know
       </div>
       <div class="question">
-        <label>3. Have you evaluated your training data set to see if there is any gender bias present in it (i.e. would the data
+        <label>3. Have you evaluated your training data set to see if there is any gender bias present in it (i.e. would
+          the data
           lead to the model evaluating women unfavourably?)
         </label>
         <input type="radio" name="genderFairData" value=3 required> Yes<br>
@@ -49,7 +58,8 @@
         <input type="radio" name="modelObjectivesFair" value=2> I don't know
       </div>
       <div class="question">
-        <label>6. Will you measure the accuracy levels of your AI model separately for men and women to identify when one
+        <label>6. Will you measure the accuracy levels of your AI model separately for men and women to identify when
+          one
           category is being treated unfavorably?
         </label>
         <input type="radio" name="disaggregatedAccuracyMeasurement" value=3 required> Yes<br>
@@ -58,9 +68,11 @@
       </div>
       <div class="question">
         <label>7. How many of these bias mitigation techniques do you plan to apply to your AI model? <br>
-          <div style="font-weight:normal; font-style: italic; margin-top: 10px;">Data Preprocessing, Fair Representation Learning, 
-            Adversarial Training, Equalized Odds/Calibrated Equality, Post-processing Techniques, Counterfactual 
-            Fairness, Regularization, Sensitive Attribute Removal, Bias-Aware Loss Functions, Human-in-the-loop Approaches</div>
+          <div style="font-weight:normal; font-style: italic; margin-top: 10px;">Data Preprocessing, Fair Representation
+            Learning,
+            Adversarial Training, Equalized Odds/Calibrated Equality, Post-processing Techniques, Counterfactual
+            Fairness, Regularization, Sensitive Attribute Removal, Bias-Aware Loss Functions, Human-in-the-loop
+            Approaches</div>
         </label>
         <input type="radio" name="biasMitigationTechniques" value=1 required> 0<br>
         <input type="radio" name="biasMitigationTechniques" value=2> 1<br>
@@ -82,8 +94,9 @@
       </div>
       <div class="question">
         <label>10. Which of these ethical guidelines are you following when building your AI model? <br>
-          <div style="font-weight:normal; font-style: italic; margin-top: 10px;">Electrical and Electronics Engineers (IEEE), 
-            the Association for Computing Machinery (ACM), the European Commission's AI Ethics Guidelines, 
+          <div style="font-weight:normal; font-style: italic; margin-top: 10px;">Electrical and Electronics Engineers
+            (IEEE),
+            the Association for Computing Machinery (ACM), the European Commission's AI Ethics Guidelines,
             and the Partnership on AI</div>
         </label>
         <input type="radio" name="ethicalGuidelines" value=2 required> One of them<br>
