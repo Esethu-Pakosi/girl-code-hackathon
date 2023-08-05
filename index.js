@@ -1,4 +1,5 @@
 const form = document.querySelector("form");
+const introductionElement = document.querySelector(".introduction-paragraph");
 const scoreElement = document.querySelector(".score");
 const feedbackElement = document.querySelector(".feedback");
 
@@ -13,6 +14,7 @@ form.addEventListener("submit", (e) => {
   const feedbackToDisplay = retrieveFeedback(formData);
 
   form.style.display = "none";
+  introductionElement.style.display = "none";
 
   // Create and style the score circle
   const formContainer = document.getElementById("form-container");
