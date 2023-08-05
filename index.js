@@ -51,17 +51,26 @@ const computeScore = (formData) => {
 
 const getScoreIntroduction = (score) => {
   if (score < 1.5) {
-    return "Congratulations! Your model is likely to contain less gender bias due to your conscious efforts to be inclusive.";
+    return "Thanks for checking. You have taken your first step in ensuring that your model won't be gender biased. Follow our recommendations below to improve your score.";
   } else if (score >= 1.5 && score < 2.5) {
     return "Getting there! You have made a good start in reducing gender bias in your model. To make your model less likely to produce biased results, check out our recommendations below:";
+  } else if (score >= 2.5 && score < 3) {
+    return "Congratulations! Your model is likely to contain less gender bias due to your conscious efforts to be inclusive. To further improve your score, check out our recommendations below:";  
   } else {
-    return "Thanks for checking. You have taken your first step in ensuring that your model won't be gender biased. Follow our recommendations below to improve your score.";
+    return "Congratulations! Your model is likely to contain less gender bias due to your conscious efforts to be inclusive."
   }
 };
 
 const createScoreCircle = (score) => {
   const scoreCircle = document.createElement("div");
   scoreCircle.classList.add("scoreCircleStyle");
+  if (score < 1.5) {
+    scoreCircle.style.backgroundColor = "#cd513c";
+  } else if (score >= 1.5 && score < 2.5) {
+    scoreCircle.style.backgroundColor = "#d0a70f";
+  } else {
+    scoreCircle.style.backgroundColor = "#1f8228";
+  }
   return scoreCircle;
 };
 

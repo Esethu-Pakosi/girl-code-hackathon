@@ -71,7 +71,6 @@ button:hover {
 .scoreCircleStyle {
     width: 100px;
     height: 100px;
-    background-color: #7db2eb;
     color: #fff;
     border-radius: 50%;
     display: flex;
