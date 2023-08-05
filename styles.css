@@ -115,3 +115,36 @@ button:hover {
     border: 1px solid #ccc;
 }
 
+.cover {
+  text-align: center;
+  padding: 10px 0;
+  color: #7db2eb;
+}
+
+.cover h1 {
+  font-size: 36px;
+  margin-bottom: 10px;
+}
+
+.cover p {
+  font-size: 18px;
+}
+
+.cover h1 {
+  font-size: 36px;
+  margin-bottom: 10px;
+}
+
+.cover p {
+  font-size: 18px;
+}
+.cover img {
+  max-width: 100%;
+  height: auto;
+  width: 400px ;
+  border-radius: 50%; 
+}
+p {
+    color: black;
+    text-align: left;
+}

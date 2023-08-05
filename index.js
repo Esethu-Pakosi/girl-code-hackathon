@@ -67,11 +67,11 @@ const createScoreCircle = (score) => {
   const scoreCircle = document.createElement("div");
   scoreCircle.classList.add("scoreCircleStyle");
   if (score < 1.5) {
-    scoreCircle.style.backgroundColor = "#cd513c";
+    scoreCircle.style.backgroundColor = "#ff0000";
   } else if (score >= 1.5 && score < 2.5) {
-    scoreCircle.style.backgroundColor = "#d0a70f";
+    scoreCircle.style.backgroundColor = "#fce400";
   } else {
-    scoreCircle.style.backgroundColor = "#1f8228";
+    scoreCircle.style.backgroundColor = "#00cc00";
   }
   return scoreCircle;
 };
