@@ -1,19 +1,20 @@
 h1 {
     border-radius: 1px black;
+    color: #d53e87;
 }
 
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #fff;
+    background-color: #fdf9e8;
     border-radius: 1px;
 }
 
 .container {
     max-width: 600px;
     margin: 20px auto;
-    background-color: #fff;
+    background-color: #ffebeb;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -33,7 +34,9 @@ body {
     font-size: small;
 }
 
-.scoreBoxStyle {}
+.scoreBoxStyle {
+    
+}
 
 .scoreBoxIntroductionStyle {}
 
