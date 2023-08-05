@@ -33,12 +33,12 @@ form.addEventListener('submit', (e) => {
     scoreBox.classList.add("scoreBoxStyle");
     scoreBox.style.fontSize = "24px"; 
     scoreBox.style.color = "#3498db";
-    document.body.appendChild(scoreBox);
+    document.getElementById("form-container").appendChild(scoreBox);
 
     const scoreIntroductionBox = document.createElement("div");
     scoreIntroductionBox.innerText = scoreIntroduction;
     scoreIntroductionBox.classList.add("scoreBoxIntroductionStyle");
-    document.body.appendChild(scoreIntroductionBox);
+    document.getElementById("form-container").appendChild(scoreIntroductionBox);
 
     // Display the feedback
 
@@ -46,7 +46,7 @@ form.addEventListener('submit', (e) => {
         const table = document.createElement("TABLE");
         table.setAttribute("id", "feedbackTable");
         table.classList.add("tableStyle");
-        document.body.appendChild(table);
+        document.getElementById("form-container").appendChild(table);
 
         feedbackToDisplay.forEach((feedback, index) => {
             const row = document.createElement("TR");
