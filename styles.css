@@ -1,5 +1,4 @@
 /* Styling for main page: */
-
 h1 {
     border-radius: 1px black;
     color: #d53e87;
@@ -28,7 +27,6 @@ footer {
 }
 
 /* Styling for form: */
-
 .question {
     margin-bottom: 10px;
     padding: 10px;
@@ -76,19 +74,53 @@ button:hover {
     background-color: #7db2eb;
 }
 
-/* Styling for results page: */
+/* New styling for score display */
+.scoreCircleStyle {
+    width: 100px;
+    height: 100px;
+    background-color: #7db2eb;
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    margin: 0 auto;
+    margin-top: 20px;
+}
 
-.scoreBoxStyle {}
+.scoreText {
+    text-align: center;
+}
 
-.scoreBoxIntroductionStyle {}
+.scoreIntroStyle {
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+    margin-top: 20px;
+}
 
-.tableStyle {}
+.scoreBoxIntroductionStyle {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
 
-.rowStyle {}
+.tableStyle {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.rowStyle {
+    background-color: #f2f2f2;
+}
 
 .cellStyle {
     padding: 15px;
-    border-style: solid;
+    border: 1px solid #ccc;
 }
 
 .recommendation-header {}

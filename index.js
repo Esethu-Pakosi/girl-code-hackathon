@@ -1,90 +1,121 @@
-const form = document.querySelector('form');
+const form = document.querySelector("form");
 const scoreElement = document.querySelector(".score");
 const feedbackElement = document.querySelector(".feedback");
 
-form.addEventListener('submit', (e) => {
-    // Prevents the page from reloading
-    e.preventDefault();
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
 
-    // Get the answers from the form
-    const rawData = new FormData(form);
-    const formData = Object.fromEntries(rawData.entries());
+  const rawData = new FormData(form);
+  const formData = Object.fromEntries(rawData.entries());
 
-    // Calculate the final score
-    const score = computeScore(formData);
+  const score = computeScore(formData);
+  const scoreIntroduction = getScoreIntroduction(score);
+  const feedbackToDisplay = retrieveFeedback(formData);
 
-    // Decide which text to display
-    let scoreIntroduction;
-    if (score < 1.5) {
-        scoreIntroduction = "Congratulations! Your model is likely to contain less gender bias due to your conscious efforts to be inclusive.";
-    } else if (score >= 1.5 && score < 2.5) {
-        scoreIntroduction = "Getting there! You have made a good start in reducing gender bias in your model. To make your mode less likely to produce biased results, check out our recommendations below:";
-    } else if (score >= 2.5) {
-        scoreIntroduction = "Thanks for checking. You have taken your first step in ensuring that your model won't be gender biased. Follow our recommendations below to improve your score.";
-    }
-    const feedbackToDisplay = retrieveFeedback(formData);
+  form.style.display = "none";
 
-    // Make the form disappear
-    form.style.display = "none";
+  // Create and style the score circle
+  const formContainer = document.getElementById("form-container");
 
-    // Display the result
-    const scoreBox = document.createElement("div");
-    scoreBox.innerText = `Your score is: ${score} out of 3`;
-    scoreBox.classList.add("scoreBoxStyle");
-    scoreBox.style.fontSize = "24px"; 
-    scoreBox.style.color = "#3498db";
-    document.getElementById("form-container").appendChild(scoreBox);
+  // Display the score introduction text
+  const scoreIntroText = createScoreIntroText();
+  formContainer.appendChild(scoreIntroText);
 
-    const scoreIntroductionBox = document.createElement("div");
-    scoreIntroductionBox.innerText = scoreIntroduction;
-    scoreIntroductionBox.classList.add("scoreBoxIntroductionStyle");
-    document.getElementById("form-container").appendChild(scoreIntroductionBox);
+  // Create and style the score circle
+  const scoreCircle = createScoreCircle(score);
+  const scoreText = document.createElement("div");
+  scoreText.classList.add("scoreText");
+  scoreText.innerText = score.toFixed(1);
+  scoreCircle.appendChild(scoreText);
 
-    // Display the feedback
+  // Append score circle to form container
+  formContainer.appendChild(scoreCircle);
 
-    if (score < 3) {
-        const table = document.createElement("TABLE");
-        table.setAttribute("id", "feedbackTable");
-        table.classList.add("tableStyle");
-        document.getElementById("form-container").appendChild(table);
+  // Display the score introduction message
+  const scoreIntroductionBox = createScoreIntroductionBox(scoreIntroduction);
+  formContainer.appendChild(scoreIntroductionBox);
 
-        feedbackToDisplay.forEach((feedback, index) => {
-            const row = document.createElement("TR");
-            const rowId = `row-${index}`;
-            row.setAttribute("id", rowId);
-            row.classList.add("rowStyle");
-            document.getElementById("feedbackTable").appendChild(row);
-
-            const cell = document.createElement("TD");
-            cell.innerHTML = feedback;
-            cell.classList.add("cellStyle");
-            document.getElementById(rowId).appendChild(cell);
-
-        });
-    }
-
-})
+  // Display the feedback table if the score is less than 3
+  if (score < 3) {
+    const table = createFeedbackTable(feedbackToDisplay);
+    formContainer.appendChild(table);
+  }
+});
 
 const computeScore = (formData) => {
-    const scores = Object.values(formData).map(score => parseInt(score));
-    const total = scores.reduce((accumulator, value) => { return accumulator + value; }, 0);
-    const average = total / scores.length;
-    return average;
-}
+  const scores = Object.values(formData).map((score) => parseInt(score));
+  const total = scores.reduce((accumulator, value) => accumulator + value, 0);
+  const average = total / scores.length;
+  return average;
+};
+
+const getScoreIntroduction = (score) => {
+  if (score < 1.5) {
+    return "Congratulations! Your model is likely to contain less gender bias due to your conscious efforts to be inclusive.";
+  } else if (score >= 1.5 && score < 2.5) {
+    return "Getting there! You have made a good start in reducing gender bias in your model. To make your model less likely to produce biased results, check out our recommendations below:";
+  } else {
+    return "Thanks for checking. You have taken your first step in ensuring that your model won't be gender biased. Follow our recommendations below to improve your score.";
+  }
+};
+
+const createScoreCircle = (score) => {
+  const scoreCircle = document.createElement("div");
+  scoreCircle.classList.add("scoreCircleStyle");
+  return scoreCircle;
+};
+
+const createScoreIntroText = () => {
+  const scoreIntroText = document.createElement("div");
+  scoreIntroText.innerText = "Your Score is:";
+  scoreIntroText.classList.add("scoreIntroStyle");
+  return scoreIntroText;
+};
+
+const createScoreIntroductionBox = (scoreIntroduction) => {
+  const scoreIntroductionBox = document.createElement("div");
+  scoreIntroductionBox.innerText = scoreIntroduction;
+  scoreIntroductionBox.classList.add("scoreBoxIntroductionStyle");
+  return scoreIntroductionBox;
+};
+
+const createFeedbackTable = (feedbackToDisplay) => {
+  const table = document.createElement("table");
+  table.setAttribute("id", "feedbackTable");
+  table.classList.add("tableStyle");
+
+  feedbackToDisplay.forEach((feedback, index) => {
+    const row = document.createElement("tr");
+    const rowId = `row-${index}`;
+    row.setAttribute("id", rowId);
+    row.classList.add("rowStyle");
+
+    const cell = document.createElement("td");
+    cell.innerHTML = feedback;
+    cell.classList.add("cellStyle");
+
+    row.appendChild(cell);
+    table.appendChild(row);
+  });
+
+  return table;
+};
 
 const retrieveFeedback = (formData) => {
-    let feedbackToDisplay = [];
-    const questions = Object.keys(formData);
-    questions.forEach((question) => {
-        if (formData[question] < 3) {
-            feedbackToDisplay.push(feedbackData[question]);
-        }
-    });
-    return feedbackToDisplay;
-}
+  const feedbackToDisplay = [];
+  const questions = Object.keys(formData);
+
+  questions.forEach((question) => {
+    if (formData[question] < 3) {
+      feedbackToDisplay.push(feedbackData[question]);
+    }
+  });
+
+  return feedbackToDisplay;
+};
 
 const feedbackData = {
-    genderDisaggregatedData: `
+  genderDisaggregatedData: `
     <h3 class="recommendation-header">Gender disaggregated data</h3>
     <p class="recommendation-paragraph">Having your training data set broken down by gender is important for several reasons:</p>
     <ul class="recommendation-unordered-list">
@@ -107,7 +138,7 @@ const feedbackData = {
     </ul>
     <p class="recommendation-paragraph">Remember that when using gender-disaggregated data, it is crucial to ensure data accuracy and quality. Additionally, consider broader intersectional perspectives, as gender intersects with other dimensions such as race, ethnicity, and socio-economic status, to ensure a comprehensive understanding of diverse user experiences and needs.</p>
     `,
-    genderEqualData: `
+  genderEqualData: `
     <h3 class="recommendation-header">Gender-balanced training data</h3>
     <p class="recommendation-paragraph">Having equal representation of genders in your training data for an AI model is important for several reasons:</p>
     <ul class="recommendation-unordered-list">
@@ -132,7 +163,7 @@ const feedbackData = {
     </ul>
     <p class="recommendation-paragraph">Remember that achieving a perfectly equal gender representation might not always be feasible, especially if the data reflects a real-world gender distribution. The goal is to strive for a representative and balanced dataset while being mindful of ethical considerations and the need for fair and unbiased AI models.</p>
     `,
-    genderFairData: `
+  genderFairData: `
     <h3 class="recommendation-header">Fairness within the training data</h3>
     <p class="recommendation-paragraph">Evaluating your training data for potential unfair evaluation of women is crucial to ensure that your AI model does not perpetuate gender bias and provides fair and equitable outcomes for all individuals. Gender bias in AI models can lead to discriminatory practices, unequal treatment, and reinforcement of harmful stereotypes. By conducting a thorough evaluation, you can identify and address biases that might lead to unfair evaluations of women. Here's why this evaluation is important and how you can do it:</p>
     <p class="recommendation-paragraph">Importance of evaluating for unfair evaluation of women:</p>
@@ -158,7 +189,7 @@ const feedbackData = {
     </ul>
     <p class="recommendation-paragraph">By conducting a thorough evaluation for unfair evaluation of women and addressing any biases, you can build AI models that are fair, unbiased, and respectful of gender diversity, ensuring equitable outcomes for all individuals.</p>
     `,
-    femaleDataCollectors: `
+  femaleDataCollectors: `
     <h3 class="recommendation-header">Diversity of data processors</h3>
     <p class="recommendation-paragraph">It is essential for the humans who annotate and label the training data for AI models to be gender diverse for several reasons:</p>
     <ul class="recommendation-unordered-list">
@@ -183,7 +214,7 @@ const feedbackData = {
     </ul>
     <p class="recommendation-paragraph">By implementing these strategies, you can create a gender-diverse annotation team that contributes to building AI models with fair and unbiased training data, leading to more inclusive and accurate technology.</p>
     `,
-    modelObjectivesFair: `
+  modelObjectivesFair: `
     <h3 class="recommendation-header">Removing bias from the model's objectives</h3>
     <p class="recommendation-paragraph">Ensuring that your AI model's objectives are clearly defined and free from gender-specific goals or outcomes requires a thoughtful and deliberate approach throughout the development process. Here are some steps to help you achieve this:</p>
     <ul class="recommendation-unordered-list">
@@ -201,7 +232,7 @@ const feedbackData = {
     </ul>
     <p class="recommendation-paragraph">By following these steps, you can ensure that your AI model's objectives are clearly defined, unbiased, and aligned with principles of fairness and inclusivity, leading to technology that benefits all users equally, regardless of gender.</p>
     `,
-    disaggregatedAccuracyMeasurement: `
+  disaggregatedAccuracyMeasurement: `
     <h3 class="recommendation-header">Measuring your model's accuracy per gender</h3>
     <p class="recommendation-paragraph">Measuring the accuracy levels of your AI model separately for different genders is essential to identify potential biases and ensure fair treatment across all gender groups. It helps to assess whether the model is making predictions that are equally accurate and unbiased for individuals of different genders. By analyzing accuracy separately, you can identify if one gender is being treated unfavorably, which could indicate the presence of gender bias in the model.</p>
     <p class="recommendation-paragraph">Here's why measuring accuracy separately is important:</p>
@@ -222,7 +253,7 @@ const feedbackData = {
     </ul>
     <p class="recommendation-paragraph">By measuring the accuracy levels of your AI model separately for different genders, you can promote fairness and inclusivity, ensuring that the model's predictions are equitable for all users, regardless of their gender identities.</p>
     `,
-    biasMitigationTechniques: `
+  biasMitigationTechniques: `
     <h3 class="recommendation-header">Mitigating bias in the training data and model</h3>
     <p class="recommendation-paragraph">There are several bias mitigation techniques that can be employed during the training of AI models to reduce or address bias. These techniques aim to ensure fairness and equity in the model's predictions. Some of the commonly used bias mitigation techniques include:</p>
     <ul class="recommendation-unordered-list">
@@ -239,7 +270,7 @@ const feedbackData = {
     </ul>
     <p class="recommendation-paragraph">It's important to note that no single technique can completely eliminate bias, and the choice of a particular method depends on the specific use case, the level of bias, and ethical considerations. In some cases, a combination of multiple techniques might be necessary to achieve the desired level of fairness in AI models. Additionally, ongoing research in the field of fairness in AI continues to bring new techniques and best practices to address bias effectively.</p>
     `,
-    modelUpdateFrequency: `
+  modelUpdateFrequency: `
     <h3 class="recommendation-header">Regularly updating the model to eliminate uncovered biases</h3>
     <p class="recommendation-paragraph">The frequency of updating an AI model depends on several factors, including the nature of the AI application, the rate of data change, the model's performance, and the evolving needs of the users. There is no one-size-fits-all answer, but here are some considerations to determine the optimal update frequency:</p>
     <ul class="recommendation-unordered-list">
@@ -258,7 +289,7 @@ const feedbackData = {
     
     <p class="recommendation-paragraph">Ultimately, the decision on how often to update the AI model should be based on a careful analysis of the factors mentioned above, and it may vary depending on the specific use case and the organization's resources and priorities.</p>
     `,
-    femaleTeamMembers: `
+  femaleTeamMembers: `
     <h3 class="recommendation-header">Gender-diverse teams building AI models</h3>
     <p class="recommendation-paragraph">Building a gender-diverse team for AI model development requires proactive efforts and a commitment to creating an inclusive and welcoming environment. Here are some strategies to help you build a more gender-diverse team:</p>
     <ul class="recommendation-unordered-list">
@@ -278,7 +309,7 @@ const feedbackData = {
     </ul>
     <p class="recommendation-paragraph">Remember that building a gender-diverse team is an ongoing effort. It requires dedication, inclusivity, and a commitment to creating an environment where everyone can thrive and contribute to the development of AI models that serve a diverse user base and society as a whole.</p>
     `,
-    ethicalGuidelines: `
+  ethicalGuidelines: `
     <h3 class="recommendation-header">Following ethical guidelines</h3>
     <p class="recommendation-paragraph">Developing AI models requires adherence to ethical guidelines to ensure that the technology is used responsibly, fairly, and with respect for human values. While different organizations and institutions may have their specific guidelines, some common ethical principles and guidelines include:</p>
     <ul class="recommendation-unordered-list">
@@ -295,6 +326,5 @@ const feedbackData = {
         <li class="recommendation-list-item"><strong>Human Oversight and Control:</strong> Humans should retain the ability to override AI decisions when necessary, particularly in critical domains like healthcare, finance, and law enforcement.</li>    
         <li class="recommendation-list-item"><strong>Continual Evaluation and Improvement:</strong> AI models should be continuously evaluated for biases, fairness, and ethical implications, with a commitment to improving the system based on feedback and lessons learned.</li>
     </ul>
-    <p class="recommendation-paragraph">Various organizations and industry bodies, such as the Institute of Electrical and Electronics Engineers (IEEE), the Association for Computing Machinery (ACM), the European Commission's AI Ethics Guidelines, and the Partnership on AI, have published specific ethical guidelines and principles for AI development. Adhering to these guidelines helps to ensure that AI technology is developed and used in a responsible, ethical, and socially beneficial manner.</p>`
-}
-
+    <p class="recommendation-paragraph">Various organizations and industry bodies, such as the Institute of Electrical and Electronics Engineers (IEEE), the Association for Computing Machinery (ACM), the European Commission's AI Ethics Guidelines, and the Partnership on AI, have published specific ethical guidelines and principles for AI development. Adhering to these guidelines helps to ensure that AI technology is developed and used in a responsible, ethical, and socially beneficial manner.</p>`,
+};
