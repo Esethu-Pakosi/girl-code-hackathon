@@ -1,4 +1,6 @@
 const form = document.querySelector('form');
+const scoreElement = document.querySelector(".score");
+const feedbackElement = document.querySelector(".feedback");
 
 form.addEventListener('submit', (e) => {
     // Prevents the page from reloading
@@ -29,6 +31,8 @@ form.addEventListener('submit', (e) => {
     const scoreBox = document.createElement("div");
     scoreBox.innerText = `Your score is: ${score} out of 3`;
     scoreBox.classList.add("scoreBoxStyle");
+    scoreBox.style.fontSize = "24px"; 
+    scoreBox.style.color = "#3498db";
     document.body.appendChild(scoreBox);
 
     const scoreIntroductionBox = document.createElement("div");
