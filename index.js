@@ -1,74 +1,71 @@
 const form = document.querySelector('form');
 
 form.addEventListener('submit', (e) => {
-  // Prevents the page from reloading
-  e.preventDefault();
+    // Prevents the page from reloading
+    e.preventDefault();
 
-  // Get the answers from the form
-  const rawData = new FormData(form);
-  const formData = Object.fromEntries(rawData.entries());
+    // Get the answers from the form
+    const rawData = new FormData(form);
+    const formData = Object.fromEntries(rawData.entries());
 
-  // Calculate the final score
-  const score = computeScore(formData);
+    // Calculate the final score
+    const score = computeScore(formData);
 
-  // Decide which text to display
-  let scoreIntroduction;
-  switch (score) {
-    case 3:
+    // Decide which text to display
+    let scoreIntroduction;
+    if (score < 1.5) {
         scoreIntroduction = "Congratulations! Your model is likely to contain less gender bias due to your conscious efforts to be inclusive.";
-        break;
-    case 2: 
+    } else if (score >= 1.5 && score < 2.5) {
         scoreIntroduction = "Getting there! You have made a good start in reducing gender bias in your model. To make your mode less likely to produce biased results, check out our recommendations below:";
-        break;
-    default:
+    } else if (score >= 2.5) {
         scoreIntroduction = "Thanks for checking. You have taken your first step in ensuring that your model won't be gender biased. Follow our recommendations below to improve your score.";
-  } 
-  const feedbackToDisplay = retrieveFeedback(formData);
+    }
+    const feedbackToDisplay = retrieveFeedback(formData);
 
-  // Make the form disappear
-  form.style.display = "none";
+    // Make the form disappear
+    form.style.display = "none";
 
-  // Display the result
-  const scoreBox = document.createElement("div");
-  scoreBox.innerText = `Your score is: ${score} out of 3`;
-  scoreBox.classList.add("scoreBoxStyle");
-  document.body.appendChild(scoreBox);
+    // Display the result
+    const scoreBox = document.createElement("div");
+    scoreBox.innerText = `Your score is: ${score} out of 3`;
+    scoreBox.classList.add("scoreBoxStyle");
+    document.body.appendChild(scoreBox);
 
-  const scoreIntroductionBox = document.createElement("div");
-  scoreIntroductionBox.innerText = scoreIntroduction;
-  scoreIntroductionBox.classList.add("scoreBoxIntroductionStyle");
-  document.body.appendChild(scoreIntroductionBox);
+    const scoreIntroductionBox = document.createElement("div");
+    scoreIntroductionBox.innerText = scoreIntroduction;
+    scoreIntroductionBox.classList.add("scoreBoxIntroductionStyle");
+    document.body.appendChild(scoreIntroductionBox);
 
-  // Display the feedback
+    // Display the feedback
 
-  if (score < 3 ) {
-    const table = document.createElement("TABLE");
-    table.setAttribute("id", "feedbackTable");
-    table.classList.add("tableStyle");
-    document.body.appendChild(table);
-  
-    feedbackToDisplay.forEach((feedback, index)=>{
-      const row = document.createElement("TR");
-      const rowId = `row-${index}`;
-      row.setAttribute("id", rowId);
-      row.classList.add("rowStyle");
-      document.getElementById("feedbackTable").appendChild(row);
-    
-      const cell = document.createElement("TD");
-      cell.innerHTML = feedback;
-      cell.classList.add("cellStyle");
-      document.getElementById(rowId).appendChild(cell);
-  
-    });
-  }
+    if (score < 3) {
+        const table = document.createElement("TABLE");
+        table.setAttribute("id", "feedbackTable");
+        table.classList.add("tableStyle");
+        document.body.appendChild(table);
+
+        feedbackToDisplay.forEach((feedback, index) => {
+            const row = document.createElement("TR");
+            const rowId = `row-${index}`;
+            row.setAttribute("id", rowId);
+            row.classList.add("rowStyle");
+            document.getElementById("feedbackTable").appendChild(row);
+
+            const cell = document.createElement("TD");
+            cell.innerHTML = feedback;
+            cell.classList.add("cellStyle");
+            document.getElementById(rowId).appendChild(cell);
+
+        });
+    }
 
 })
 
 const computeScore = (formData) => {
     const scores = Object.values(formData).map(score => parseInt(score));
     const total = scores.reduce((accumulator, value) => { return accumulator + value; }, 0);
-    const average = total/scores.length;
-    return Math.ceil(average);
+    const average = total / scores.length;
+    return average;
 }
 
 const retrieveFeedback = (formData) => {
