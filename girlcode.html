@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Girlcode project</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Assessment Form</title>
+</head>
     <style>
     h1{
         border-radius: 1px black;
@@ -26,14 +27,8 @@
   .question {
     margin-bottom: 10px;
     padding: 10px;
+    padding-bottom: 15px;
   }
-  .question-inline {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline; 
-    margin-bottom: 15px;
-    font-size:small ;
-    }
   label {
     display: block;
     font-weight: bold;
@@ -60,7 +55,7 @@
     cursor: pointer;
   }
   button:hover {
-    background-color: #0056b3;
+    background-color: #7db2eb;
   }
 </style>
 </head>
@@ -68,22 +63,6 @@
     <div class="container">
   <h1>Gender Bias Assessment Form</h1>
   <form>
-    <div class="question">
-      <label for="companyName">Company Name:</label>
-      <input type="text" id="companyName" name="companyName" placeholder="Enter company name">
-    </div>
-    <div class="question">
-      <label for="name&Surname">Name & Surname:</label>
-      <input type="text" id="name&Surname" name="name&Surname" placeholder="Enter your name & Surname">
-    </div>
-    <div class="question-inline">
-      <label for="numMEmployees">Total employees:</label>
-      <input type="text" id="numEmployees" name="numEmployees" placeholder="No of Employees">
-      <label for="numFemales">No of Females:</label>
-      <input type="text" id="numFemales" name="numFemales" placeholder="No of females">
-      <label for="numMales">No of Males:</label>
-      <input type="text" id="numMales" name="numFemales" placeholder="No of Males">
-    </div>
     <div class="question">
       <label>1. Is your dataset broken down by gender (i.e do you have data on both men and women)?
       </label>
@@ -156,5 +135,6 @@
     </div>
     <button type="submit">Submit</button>
   </form>
+  <script src="index.js"> </script>
 </body>
 </html>
