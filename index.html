@@ -15,111 +15,130 @@
     <div class="introduction-paragraph">
     <img src="girlcode.png" alt="Hackathon GirlCode">
   </div>
-  <p>Are you about to build an AI model? This will no doubt revolutionise your solution!
-      However, AI models can perpetuate gender biases by learning from biased training data,
-        replicating and reinforcing societal prejudices in their decision-making. So how do you avoid that?
-      With this Gender Bias Assessment, you can measure whether your AI model is likely to
+  <p> -Are you about to build an AI model?
+        This will no doubt revolutionise your solution!
+          However, AI models can perpetuate gender biases by learning from biased training data,
+           replicating and reinforcing societal prejudices in their decision-making. 
+  <br/>
+      -How do you avoid that?
+        With this Gender Bias Assessment, you can measure whether your AI model is likely to
         contain gender bias. Simply fill out the form to see your score (out of 3), and receive
         concrete recommendations for how to improve it.
       </p>
-  <div class="footer">👩‍💻Coded by  
+
+    
+  <div class="footer">
+    👩‍💻Coded by  
     <a href="https://www.linkedin.com/in/esethu-pakosi-7a361026a/?originalSubdomain=za">Esethu</a>,
      <a href="https://www.linkedin.com/in/tamiragunzburg/">Tamira</a> and
       <a href="https://www.linkedin.com/in/asavela-jikwana-890178150/">Asavela</a> 
     </div>
+    </div>
+    </div>
 
   <div class="container cover">
     <h2>Gender Bias Assessment</h2>
-    <form>
       <div class="container" id="form-container">
+        <form>
       <div class="question">
         <label>1. Is your training data set broken down by gender (i.e do you have data on both men and women)?
         </label>
-        <input type="radio" name="genderDisaggregatedData" value=3 required> Yes<br>
-        <input type="radio" name="genderDisaggregatedData" value=1> No<br>
+        <input type="radio" name="genderDisaggregatedData" value=3 required> Yes<br/>
+        <input type="radio" name="genderDisaggregatedData" value=1> No<br/>
         <input type="radio" name="genderDisaggregatedData" value=2> I don't know
       </div>
+
       <div class="question">
         <label>2. Does your training data set have equal representation of genders (i.e. roughly 50% of data on men and
           women)?
         </label>
-        <input type="radio" name="genderEqualData" value=3 required> Yes<br>
-        <input type="radio" name="genderEqualData" value=1> No<br>
+        <input type="radio" name="genderEqualData" value=3 required> Yes<br/>
+        <input type="radio" name="genderEqualData" value=1> No<br/>
         <input type="radio" name="genderEqualData" value=2> I don't know
       </div>
+
       <div class="question">
         <label>3. Have you evaluated your training data set to see if there is any gender bias present in it (i.e. would
           the data
           lead to the model evaluating women unfavourably?)
         </label>
-        <input type="radio" name="genderFairData" value=3 required> Yes<br>
-        <input type="radio" name="genderFairData" value=1> No<br>
+        <input type="radio" name="genderFairData" value=3 required> Yes<br/>
+        <input type="radio" name="genderFairData" value=1> No<br/>
         <input type="radio" name="genderFairData" value=2> I don't know
       </div>
+
       <div class="question">
         <label>4. What percentage of the humans who are labeling your training data are women?
         </label>
-        <input type="radio" name="femaleDataCollectors" value=1 required> 0-50%<br>
-        <input type="radio" name="femaleDataCollectors" value=3> 51-100%<br>
+        <input type="radio" name="femaleDataCollectors" value=1 required> 0-50%<br/>
+        <input type="radio" name="femaleDataCollectors" value=3> 51-100%<br/>
         <input type="radio" name="femaleDataCollectors" value=2> We are not annotating the data ourselves
       </div>
+
       <div class="question">
         <label>5. Are your AI model's objectives clearly defined and free from gender-specific goals or outcomes?
         </label>
-        <input type="radio" name="modelObjectivesFair" value=3 required> Yes<br>
-        <input type="radio" name="modelObjectivesFair" value=1> No<br>
+        <input type="radio" name="modelObjectivesFair" value=3 required> Yes<br/>
+        <input type="radio" name="modelObjectivesFair" value=1> No<br/>
         <input type="radio" name="modelObjectivesFair" value=2> I don't know
       </div>
+
       <div class="question">
         <label>6. Will you measure the accuracy levels of your AI model separately for men and women to identify when
           one
           category is being treated unfavorably?
         </label>
-        <input type="radio" name="disaggregatedAccuracyMeasurement" value=3 required> Yes<br>
-        <input type="radio" name="disaggregatedAccuracyMeasurement" value=1> No<br>
+        <input type="radio" name="disaggregatedAccuracyMeasurement" value=3 required> Yes<br/>
+        <input type="radio" name="disaggregatedAccuracyMeasurement" value=1> No<br/>
         <input type="radio" name="disaggregatedAccuracyMeasurement" value=2> I don't know
       </div>
+
       <div class="question">
-        <label>7. How many of these bias mitigation techniques do you plan to apply to your AI model? <br>
+        <label>7. How many of these bias mitigation techniques do you plan to apply to your AI model? <br/>
           <div style="font-weight:normal; font-style: italic; margin-top: 10px;">Data Preprocessing, Fair Representation
             Learning,
             Adversarial Training, Equalized Odds/Calibrated Equality, Post-processing Techniques, Counterfactual
             Fairness, Regularization, Sensitive Attribute Removal, Bias-Aware Loss Functions, Human-in-the-loop
-            Approaches</div>
+            Approaches
+
         </label>
-        <input type="radio" name="biasMitigationTechniques" value=1 required> 0<br>
-        <input type="radio" name="biasMitigationTechniques" value=2> 1<br>
+        <input type="radio" name="biasMitigationTechniques" value=1 required> 0<br/>
+        <input type="radio" name="biasMitigationTechniques" value=2> 1<br/>
         <input type="radio" name="biasMitigationTechniques" value=3> A combination of several of them
       </div>
+
       <div class="question">
         <label>8. How often do you intend to update your AI model?
         </label>
-        <input type="radio" name="modelUpdateFrequency" value=3 required> Regularly<br>
-        <input type="radio" name="modelUpdateFrequency" value=2> If a bias is uncovered<br>
+        <input type="radio" name="modelUpdateFrequency" value=3 required> Regularly<br/>
+        <input type="radio" name="modelUpdateFrequency" value=2> If a bias is uncovered<br/>
         <input type="radio" name="modelUpdateFrequency" value=1> Not planning to update it
       </div>
+
       <div class="question">
         <label>9. What percentage of the team building your AI model is female?
         </label>
-        <input type="radio" name="femaleTeamMembers" value=1 required> 0-35%<br>
-        <input type="radio" name="femaleTeamMembers" value=2> 36-66%<br>
+        <input type="radio" name="femaleTeamMembers" value=1 required> 0-35%<br/>
+        <input type="radio" name="femaleTeamMembers" value=2> 36-66%<br/>
         <input type="radio" name="femaleTeamMembers" value=3> 67%-100%
       </div>
+      
       <div class="question">
-        <label>10. Which of these ethical guidelines are you following when building your AI model? <br>
-          <div style="font-weight:normal; font-style: italic; margin-top: 10px;">Electrical and Electronics Engineers
-            (IEEE),
-            the Association for Computing Machinery (ACM), the European Commission's AI Ethics Guidelines,
-            and the Partnership on AI</div>
-        </label>
-        <input type="radio" name="ethicalGuidelines" value=2 required> One of them<br>
-        <input type="radio" name="ethicalGuidelines" value=1> None of them<br>
-        <input type="radio" name="ethicalGuidelines" value=3> Several of them
-      </div>
+  <label>10. Which of these ethical guidelines are you following when building your AI model? <br/>
+    <div style="font-weight:normal; font-style: italic; margin-top: 10px;">Electrical and Electronics Engineers
+      (IEEE),
+      the Association for Computing Machinery (ACM), the European Commission's AI Ethics Guidelines,
+      and the Partnership on AI</div>
+    <input type="radio" name="ethicalGuidelines" value=2 required> One of them<br/>
+    <input type="radio" name="ethicalGuidelines" value=1> None of them<br/>
+    <input type="radio" name="ethicalGuidelines" value=3> Several of them
+  </label>
+</div>
+</form>
+
       <button type="submit">Submit</button>
-    </form>
 
-
+</form>
 <footer>
   <a href="https://tamiragun.github.io/girl-code-hackathon/">Open-source code </a>
 </footer>

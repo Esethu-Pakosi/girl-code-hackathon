@@ -57,9 +57,9 @@ const getScoreIntroduction = (score) => {
   } else if (score >= 1.5 && score < 2.5) {
     return "Getting there! You have made a good start in reducing gender bias in your model. To make your model less likely to produce biased results, check out our recommendations below:";
   } else if (score >= 2.5 && score < 3) {
-    return "Congratulations! Your model is likely to contain less gender bias due to your conscious efforts to be inclusive. To further improve your score, check out our recommendations below:";  
+    return "Congratulations! Your model is likely to contain less gender bias due to your conscious efforts to be inclusive. To further improve your score, check out our recommendations below:";
   } else {
-    return "Congratulations! Your model is likely to contain less gender bias due to your conscious efforts to be inclusive."
+    return "Congratulations! Your model is likely to contain less gender bias due to your conscious efforts to be inclusive.";
   }
 };
 
