@@ -1,7 +1,7 @@
 /* Styling for main page: */
 h1 {
     border-radius: 1px black;
-    color: #d53e87;
+    color: #e9567a;
     text-align: center;
 }
 
@@ -11,15 +11,6 @@ body {
     padding: 0;
     background-color: #fdf9e8;
     border-radius: 1px;
-}
-
-.container {
-    max-width: 600px;
-    margin: 20px auto;
-    background-color: #ffebeb;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 footer {
@@ -143,8 +134,41 @@ button:hover {
   height: auto;
   width: 400px ;
   border-radius: 50%; 
+  border: solid  #947695;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
 }
 p {
     color: black;
     text-align: left;
+    border: 1px solid rgb(75, 71, 71);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+    border-radius: 3px; 
+}
+
+/* Common styling for all containers */
+.container {
+  /* Add your shared styling here */
+  
+  padding: 3px;
+  border: 1px solid #ccc;
+  background-color: #ffebeb;
+  max-width: 600px;
+    margin: 20px auto;
+    color: black;
+    text-align: left; 
+    }
+
+/* Specific styling for the cover section */
+.cover {
+  text-align: center;
+  background-color: #fff;
+  color: #72b4c3;
+}
+
+/* Styling for the last page */
+.last-page {
+  text-align: center;
+  padding: 40px;
+  background-color: #333;
+  color: white;
 }
