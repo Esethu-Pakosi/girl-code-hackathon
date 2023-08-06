@@ -13,10 +13,6 @@ form.addEventListener("submit", (e) => {
   const scoreIntroduction = getScoreIntroduction(score);
   const feedbackToDisplay = retrieveFeedback(formData);
 
-  // Redirect to the result page
-  window.location.href = 'result.html?score=' + score + '&feedback=' + encodeURIComponent(JSON.stringify(feedbackToDisplay));
-});
-
   form.style.display = "none";
   introductionElement.style.display = "none";
 
